@@ -113,12 +113,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'buttons' => [
                     'export' => function($url, $model, $key){
-                        $options = [
-                            'title'      => Yii::t('yii', '导出Doc文档'),
-                            'aria-label' => Yii::t('yii', '导出Doc文档'),
-                            // 'target' => '_blank'
-                        ];
-                        return Html::a('<span class="glyphicon glyphicon-copy"></span>', $url, $options);
+                        if ($model->getStudentRecordValue()->count()) {
+                            $options = [
+                                'title'      => Yii::t('yii', '导出Doc文档'),
+                                'aria-label' => Yii::t('yii', '导出Doc文档'),
+                                // 'target' => '_blank'
+                            ];
+                            return Html::a('<span class="glyphicon glyphicon-copy"></span>', $url, $options);
+                        }
                     }
                 ],
                 'contentOptions' => ['nowrap'=>'nowrap']
@@ -182,7 +184,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
     </div>
 
-</div>
+</div> 
 <?php \yii\widgets\Pjax::end() ?>
 
 
